@@ -1,4 +1,4 @@
-package epicentr.security;
+package autoria.security;
 
 import java.util.Collection;
 
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import epicentr.entities.User;
-import epicentr.repositories.UserRepository;
+import autoria.entities.User;
+import autoria.repositories.UserRepository;
 
 /**
  * @author Ramesh Fadatare

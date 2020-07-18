@@ -1,6 +1,6 @@
-package epicentr.repositories;
+package autoria.repositories;
 
-import epicentr.entities.Message;
+import autoria.entities.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

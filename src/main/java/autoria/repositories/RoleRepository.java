@@ -1,6 +1,6 @@
-package epicentr.repositories;
+package autoria.repositories;
 
-import epicentr.entities.Role;
+import autoria.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {

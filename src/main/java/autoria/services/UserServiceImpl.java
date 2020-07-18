@@ -1,12 +1,12 @@
-package epicentr.services;
+package autoria.services;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 import net.javaguides.springbootsecurity.dto.UserRegistrationDto;
-import epicentr.entities.Role;
-import epicentr.entities.User;
-import epicentr.repositories.UserRepository;
+import autoria.entities.Role;
+import autoria.entities.User;
+import autoria.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

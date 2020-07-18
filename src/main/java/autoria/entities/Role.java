@@ -1,4 +1,4 @@
-package epicentr.entities;
+package autoria.entities;
 
 import java.util.ArrayList;
 import java.util.List;

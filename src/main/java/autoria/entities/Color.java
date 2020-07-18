@@ -1,16 +1,24 @@
-package epicentr.entities;
+package autoria.entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "colors")
+public class Color {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name= "name", nullable = false)
     private String name;
+
+    public Color() {
+    }
+
+    public Color(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -27,5 +35,4 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-
 }

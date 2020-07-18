@@ -1,21 +1,17 @@
-package epicentr.web;
+package autoria.web;
 
-import epicentr.entities.Message;
-import epicentr.repositories.RoleRepository;
+import autoria.repositories.RoleRepository;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import epicentr.repositories.MessageRepository;
-import epicentr.repositories.UserRepository;
+import autoria.repositories.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.ServletContext;
 import java.io.File;

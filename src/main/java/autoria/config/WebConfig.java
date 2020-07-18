@@ -1,4 +1,4 @@
-package epicentr.config;
+package autoria.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

@@ -1,4 +1,4 @@
-package epicentr.entities;
+package autoria.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

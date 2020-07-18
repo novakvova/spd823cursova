@@ -1,4 +1,4 @@
-package epicentr.config;
+package autoria.config;
 
 import javax.sql.DataSource;
 

@@ -1,8 +1,6 @@
-package epicentr.repositories;
+package autoria.repositories;
 
-import java.util.Optional;
-
-import epicentr.entities.User;
+import autoria.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
