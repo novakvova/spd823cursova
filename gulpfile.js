@@ -21,6 +21,9 @@ var depsjs = {
     "bootstrap": {
         "dist/js/bootstrap.min.js": ""
     },
+    "jquery": {
+        "dist/jquery.js": ""
+    },
     // "axios": {
     //     "dist/axios.min.js": ""
     // }
