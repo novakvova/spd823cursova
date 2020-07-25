@@ -56,4 +56,22 @@ public class ColorController {
         return "redirect:/color";
     }
 
+    @GetMapping("/updatecolor/{id}")
+    public String updateColor(@PathVariable("id") Integer id, Model model){
+        try {
+            Optional<Color> col = colorRepository.findById(id);
+            model.addAttribute("color", col.get());
+        }
+        catch (Exception ex){
+            return null;
+        }
+        return "updatecolor";
+    }
+
+    @PostMapping("/updatecolor/{id}")
+    public String updateColor(@PathVariable("id") Integer id, Color color){
+        colorService.save(color);
+        return "redirect:/color";
+    }
+
 }
