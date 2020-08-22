@@ -4,16 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -37,13 +28,18 @@ public class User
 	@Column(nullable=false)
 	@Size(min=4)
 	private String password;
-	
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY, optional = false)
+	private People people;
+
 	@ManyToMany(cascade=CascadeType.MERGE)
 	@JoinTable(
 	      name="user_role",
 	      joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
 	      inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
 	private List<Role> roles;
+
 
 	public User() {
 		roles = new ArrayList<Role>();
@@ -53,6 +49,22 @@ public class User
 		this.name = name;
 		this.email = email;
 		this.password = password;
+	}
+
+	public void setPeople(People people) {
+		if(people==null){
+			if(this.people!=null){
+				this.people.setUser(null);
+			}
+		}
+		else {
+			people.setUser(this);
+		}
+		this.people=people;
+	}
+
+	public People getPeople() {
+		return people;
 	}
 
 	public Integer getId()
