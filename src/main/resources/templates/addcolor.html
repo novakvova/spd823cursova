@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+<head>
+    <title>Додати кольор</title>
+    <link rel="stylesheet"
+          th:href="@{/assets/css/index.min.css}"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Додати кольор!</h1>
+    <form action="home" th:action="@{/addcolor}" method="post">
+        <input type="text" name="name">
+        <div class="row">
+            <div class="form-group col-xs-offset-8 col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Зберегти</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
