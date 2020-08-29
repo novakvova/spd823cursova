@@ -6,47 +6,38 @@
       layout:decorator="layout">
 <head>
     <title>Кольори</title>
-    <link rel="stylesheet"
-          th:href="@{/static/assets/css/index.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/css/index.min.css}"/>
     <div layout:fragment="styles">
         <link th:href="@{'/assets/gLightbox/glightbox.css'}" rel="stylesheet"/>
+    </div>
+    <div layout:fragment="scripts">
+        <script th:src="@{'/assets/gLightbox/glightbox.js'}"></script>
+        <script><!--Opens in frame above instead of opening new page-->
+        var lightbox = GLightbox({'selector': 'glightbox-demo'});
+        </script>
     </div>
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="col-6 col-md-4 col-lg-3 mb-4">
-        <div class="card mx-auto text-center">
-            <a href="#url">
-                <img class="card-img-top"
-                     src="https://lh3.googleusercontent.com/proxy/Q7ytdL2xhYRluaZHjgOh5zbPBXc_rTkFmWRAjHtjG8CFZM6M3fCzPYDUpkr2vIXjIhHkHm1Ea_OeOOQiIrt-w7vLCeFJ2FpwbBK-x0xmJMyQN84_QNJ2"
-                     alt="Sample Title">
-            </a>
-        </div>
-    </div>
     <div class="container">
         <h1>GLightbox: Gallery Lightbox DEMO</h1>
+        <div th:each="item : ${list}">
+            <a th:href="${item.getContent()}" class="glightbox-demo">
+                <img th:src="${item.getImage()}" alt="image">
+            </a>
+        </div>
+<!--        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12085.977306439116!2d-73.96648875371474!3d40.77314541916876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258bf08488f6b%3A0x618706a9142daa0d!2sUpper+East+Side%2C+Nueva+York%2C+EE.+UU.!5e0!3m2!1ses-419!2smx!4v1511830027642"-->
+<!--           class="glightbox-demo">-->
+<!--            <img src="https://picsum.photos/401/300/?random" alt="image">-->
+<!--        </a>-->
+<!--        <a href="https://www.youtube.com/watch?v=Ga6RYejo6Hk" class="glightbox-demo">-->
+<!--            <img src="https://picsum.photos/402/300/?random" alt="image">-->
+<!--        </a>-->
 
-        <a href="https://vimeo.com/115041822" class="glightbox-demo">
-            <img src="https://picsum.photos/400/300/?random" alt="image">
-        </a>
-        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12085.977306439116!2d-73.96648875371474!3d40.77314541916876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258bf08488f6b%3A0x618706a9142daa0d!2sUpper+East+Side%2C+Nueva+York%2C+EE.+UU.!5e0!3m2!1ses-419!2smx!4v1511830027642"
-           class="glightbox-demo">
-            <img src="https://picsum.photos/401/300/?random" alt="image">
-        </a>
-        <a href="https://www.youtube.com/watch?v=Ga6RYejo6Hk" class="glightbox-demo">
-            <img src="https://picsum.photos/402/300/?random" alt="image">
-        </a>
-
-        <a href="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" class="glightbox-demo">
-            <img src="https://cdn.jpegmini.com/user/images/slider_puffin_before_mobile.jpg" alt="image">
-        </a>
+<!--        <a href="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" class="glightbox-demo">-->
+<!--            <img src="https://cdn.jpegmini.com/user/images/slider_puffin_before_mobile.jpg" alt="image">-->
+<!--        </a>-->
     </div>
-</div>
-<div layout:fragment="scripts">
-    <script th:src="@{'/assets/gLightbox/glightbox.js'}"></script>
-    <script>
-        var lightbox = GLightbox({ 'selector': 'glightbox-demo' });
-    </script>
 </div>
 </body>
 </html>
