@@ -76,5 +76,4 @@ public class ColorsController {
         colorService.save(color);
         return "redirect:/colors";
     }
-
 }
