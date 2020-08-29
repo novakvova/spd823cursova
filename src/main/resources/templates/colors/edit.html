@@ -7,12 +7,12 @@
 <head>
     <title>Редагувати кольор</title>
     <link rel="stylesheet"
-          th:href="@{/assets/css/index.min.css}"/>
+          th:href="@{/static/assets/css/index.min.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
     <h1>Редагувати кольор!</h1>
-    <form action="home" th:action="@{/updatecolor/{id}(id=${color.id})}" method="post">
+    <form action="home" th:action="@{/colors/edit/{id}(id=${color.id})}" method="post">
         <input type="text" name="name" th:value="${color.name}">
         <input type="hidden" name="id" th:value="${color.id}">
         <div class="row">

@@ -7,7 +7,7 @@
 <head>
     <title>Кольори</title>
     <link rel="stylesheet"
-          th:href="@{/assets/css/index.min.css}"/>
+          th:href="@{/static/assets/css/index.min.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
@@ -15,13 +15,13 @@
     <table class="table">
         <tr th:each="color : ${colors}">
             <td th:text="${color.name}"></td>
-            <td> <a th:href="@{/deletecolor/{id}(id=${color.id})}">Delete</a></td>
+            <td> <a th:href="@{/colors/delete/{id}(id=${color.id})}">Delete</a></td>
             <td> <label> | </label></td>
-            <td> <a th:href="@{/updatecolor/{id}(id=${color.id})}">Edit</a></td>
+            <td> <a th:href="@{/colors/edit/{id}(id=${color.id})}">Edit</a></td>
         </tr>
     </table>
     <p>
-        <a th:href="@{/addcolor}" class="btn btn-success">Додати</a>
+        <a th:href="@{/colors/create}" class="btn btn-success">Додати</a>
     </p>
 </div>
 </body>

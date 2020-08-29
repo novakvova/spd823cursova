@@ -9,36 +9,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
 @Controller
-public class ColorController {
+@RequestMapping("/colors")
+public class ColorsController {
 
     @Autowired
     private ColorRepository colorRepository;
     @Autowired
     private ColorServiseImpl colorService;
 
-    @GetMapping("/color")
+    @GetMapping("")
     public String index(Model model)
     {
         model.addAttribute("colors", colorRepository.findAll());
-        return "color";
+        return "colors/index";
     }
-    @GetMapping("/addcolor")
-    public String addColor(){
-        //colorService.save(color);
-        return "addcolor";
-            }
 
-    @PostMapping("/addcolor")
+    @GetMapping("/create")
+    public String addColor() {
+        //colorService.save(color);
+        return "colors/create";
+    }
+
+    @PostMapping("/create")
     public String addColor(Color color){
         colorService.save(color);
-        return "redirect:/color";
+        return "redirect:/colors";
     }
 
-    @GetMapping("/deletecolor/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteColor(@PathVariable("id") Integer id, Model model){
         try {
             Optional<Color> col = colorRepository.findById(id);
@@ -47,16 +50,16 @@ public class ColorController {
         catch (Exception ex){
             return null;
         }
-        return "deletecolor";
+        return "colors/delete";
     }
 
-    @PostMapping("/deletecolor/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteColor(@PathVariable("id") Integer id, Color color){
         colorService.deleteById(id);
-        return "redirect:/color";
+        return "redirect:/colors";
     }
 
-    @GetMapping("/updatecolor/{id}")
+    @GetMapping("/edit/{id}")
     public String updateColor(@PathVariable("id") Integer id, Model model){
         try {
             Optional<Color> col = colorRepository.findById(id);
@@ -65,13 +68,13 @@ public class ColorController {
         catch (Exception ex){
             return null;
         }
-        return "updatecolor";
+        return "colors/edit";
     }
 
-    @PostMapping("/updatecolor/{id}")
+    @PostMapping("/edit/{id}")
     public String updateColor(@PathVariable("id") Integer id, Color color){
         colorService.save(color);
-        return "redirect:/color";
+        return "redirect:/colors";
     }
 
 }
