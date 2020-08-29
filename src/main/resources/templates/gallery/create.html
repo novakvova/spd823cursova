@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Додати фото</title>
+    <link rel="stylesheet"
+          th:href="@{/static/assets/css/index.min.css}"/>
 </head>
 <body>
+<div layout:fragment="content">
+    <h1>Додати у галерею!</h1>
+    <form action="home" th:action="@{/gallery/create}" method="post">
 
+        <div class="form-group">
+            <label for="image">Фото</label>
+            <input type="text" class="form-control" id="image" name="image">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Контент</label>
+            <input type="text" class="form-control" id="content" name="content">
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-offset-8 col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Зберегти</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

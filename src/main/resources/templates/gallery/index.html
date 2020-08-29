@@ -21,10 +21,13 @@
 <div layout:fragment="content">
     <div class="container">
         <h1>GLightbox: Gallery Lightbox DEMO</h1>
-        <div th:each="item : ${list}">
-            <a th:href="${item.getContent()}" class="glightbox-demo">
-                <img th:src="${item.getImage()}" alt="image">
-            </a>
+        <a class="btn btn-success" th:href="@{/gallery/create}">Додати</a>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" th:each="item : ${list}">
+                <a th:href="${item.getContent()}" class="glightbox-demo">
+                    <img  class="img-thumbnail" th:src="${item.getImage()}" alt="image">
+                </a>
+            </div>
         </div>
 <!--        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12085.977306439116!2d-73.96648875371474!3d40.77314541916876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258bf08488f6b%3A0x618706a9142daa0d!2sUpper+East+Side%2C+Nueva+York%2C+EE.+UU.!5e0!3m2!1ses-419!2smx!4v1511830027642"-->
 <!--           class="glightbox-demo">-->
