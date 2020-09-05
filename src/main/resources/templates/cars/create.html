@@ -24,10 +24,10 @@
 
         <div class="form-group">
             <label for="color">Колір</label>
-            <select type="text" class="form-control" id="color" name="color">
-                <forEach items="@{colors}" var="color">
-                    <option value="@{color.name}"></option>
-                </forEach>
+            <select name="color_id" id="color">
+                <option th:each="color : ${colors}"
+                        th:value="${color.getId()}"
+                        th:utext="${color.getName()}"/>
             </select>
         </div>
 
