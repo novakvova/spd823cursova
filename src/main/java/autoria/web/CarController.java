@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,14 +25,13 @@ public class CarController {
     private ColorRepository colorRepository;
     @Autowired
     private CarServiceImpl carService;
-
     @GetMapping("")
-    public String index(Model model) {
-        List<Car> cars = carRepository.findAll();
+    public String index(Model model)
+    {
+        List<Car> cars=carRepository.findAll();
         model.addAttribute("cars", cars);
         return "cars/index";
     }
-
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("colors", colorRepository.findAll());
@@ -42,50 +40,51 @@ public class CarController {
     }
 
     @PostMapping("/create")
-    public String create(Car car, int color_id) {
-        Color color = colorRepository.findById(color_id).get();
+    public String create(Car car, int color_id){
+        Color color=colorRepository.findById(color_id).get();
         car.setColor(color);
         carRepository.save(car);
         return "redirect:/cars";
     }
-
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Model model) {
+    public String delete(@PathVariable("id") Integer id, Model model){
         try {
             Optional<Car> car = carRepository.findById(id);
             model.addAttribute("car", car.get());
-        } catch (Exception ex) {
+        }
+        catch (Exception ex){
             return null;
         }
         return "cars/delete";
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
-        carRepository.deleteById(id);
+    public String deleteColor(@PathVariable("id") Integer id){
+        carService.deleteById(id);
         return "redirect:/cars";
     }
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable("id") Integer id, Model model) {
+    public String update(@PathVariable("id") Integer id, Model model){
         try {
             Optional<Car> car = carRepository.findById(id);
             model.addAttribute("car", car.get());
             model.addAttribute("colors", colorRepository.findAll());
-        } catch (Exception ex) {
+        }
+        catch (Exception ex){
             return null;
         }
         return "cars/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String update(@PathVariable("id") Integer id, Car car,  int color_id) {
-        Car newCar=carRepository.findById(id).get();
-        newCar.setModel(car.getModel());
-        newCar.setVendor(car.getVendor());
-        Color color = colorRepository.findById(color_id).get();
-        newCar.setColor(color);
-        carService.save(newCar);
+    public String update(@PathVariable("id") Integer id, Car car, int color_id){
+        Car update=carRepository.findById(id).get();
+        update.setModel(car.getModel());
+        update.setVendor(car.getVendor());
+        Color color=colorRepository.findById(color_id).get();
+        update.setColor(color);
+        carService.save(update);
         return "redirect:/cars";
     }
 }

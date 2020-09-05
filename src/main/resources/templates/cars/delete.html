@@ -5,17 +5,18 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorator="layout">
 <head>
-    <title>Видалити машину</title>
+    <title>Видалити автомобіль</title>
     <link rel="stylesheet"
           th:href="@{/static/assets/css/index.min.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Видалити машину?</h1>
+    <h1>Видалити автомобіль?</h1>
     <form action="home" th:action="@{/cars/delete/{id}(id=${car.id})}" method="post">
-        <label name="name" th:text="${car.model}"></label>
-        <input type="hidden" name="id" th:value="${car.id}">
-        <div class="row">
+        <label name="name" th:text="${car.getVendor()}"></label>
+        <label name="name" th:text="${car.getModel()}"></label>
+        <label name="name" th:text="${car.color.getName()}"></label>
+         <div class="row">
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Видалити</button>
             </div>

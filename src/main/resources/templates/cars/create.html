@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label for="color">Колір</label>
-            <select name="color_id" id="color">
+            <select  class="form-control" name="color_id" id="color">
                 <option th:each="color : ${colors}"
                         th:value="${color.getId()}"
                         th:utext="${color.getName()}"/>

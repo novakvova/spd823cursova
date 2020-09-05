@@ -5,16 +5,22 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorator="layout">
 <head>
-    <title>Редагувати машину</title>
+    <title>Редагувати автомобіль</title>
     <link rel="stylesheet"
           th:href="@{/static/assets/css/index.min.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Редагувати машину!</h1>
+    <h1>Редагувати автомобіль!</h1>
     <form action="home" th:action="@{/cars/edit/{id}(id=${car.id})}" method="post">
-        <input type="text" name="model" th:value="${car.model}">
-        <input type="text" name="vendor" th:value="${car.vendor}">
+        <input type="text" id="vendor" name="vendor" th:value="${car.vendor}">
+        <input type="text" id="model" name="model" th:value="${car.model}">
+        <select name="color_id" id="color_id">
+            <option th:each="color : ${colors}"
+                    th:value="${color.getId()}"
+                    th:utext="${color.getName()}"
+            th:selected="${car.getColor().getId()==color.getId()}"/>
+        </select>
         <div class="row">
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Зберегти</button>
@@ -22,13 +28,6 @@
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <a th:href="@{/cars}" class="btn btn-success btn-block btn-flat">Скасувати</a>
             </div>
-            <select name="color_id" id="color">
-<!--                <option th:utext="${car.getColor().getName()}"/>-->
-                <option th:each="color : ${colors}"
-                        th:value="${color.getId()}"
-                        th:utext="${color.getName()}"
-                        th:selected="${car.getColor().getId()==color.getId()}"/>
-            </select>
         </div>
     </form>
 </div>
