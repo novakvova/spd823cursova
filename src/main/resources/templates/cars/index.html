@@ -17,9 +17,9 @@
             <td th:text="${item.vendor}"></td>
             <td th:text="${item.model}"></td>
             <td th:text="${item.color.getName()}"></td>
-            <td> <a th:href="@{/car/delete/{id}(id=${item.id})}">Delete</a></td>
+            <td> <a th:href="@{/cars/delete/{id}(id=${item.id})}">Delete</a></td>
             <td> <label> | </label></td>
-            <td> <a th:href="@{/car/edit/{id}(id=${item.id})}">Edit</a></td>
+            <td> <a th:href="@{/cars/edit/{id}(id=${item.id})}">Edit</a></td>
         </tr>
     </table>
     <p>
