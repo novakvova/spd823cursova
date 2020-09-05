@@ -42,8 +42,8 @@ public class CarController {
     }
 
     @PostMapping("/create")
-    public String create(Car car, int car_id) {
-        Color color = colorRepository.findById(car_id).get();
+    public String create(Car car, int color_id) {
+        Color color = colorRepository.findById(color_id).get();
         car.setColor(color);
         carRepository.save(car);
         return "redirect:/cars";
@@ -71,6 +71,7 @@ public class CarController {
         try {
             Optional<Car> car = carRepository.findById(id);
             model.addAttribute("car", car.get());
+            model.addAttribute("colors", colorRepository.findAll());
         } catch (Exception ex) {
             return null;
         }
@@ -78,10 +79,12 @@ public class CarController {
     }
 
     @PostMapping("/edit/{id}")
-    public String update(@PathVariable("id") Integer id,Car car) {
+    public String update(@PathVariable("id") Integer id, Car car,  int color_id) {
         Car newCar=carRepository.findById(id).get();
         newCar.setModel(car.getModel());
         newCar.setVendor(car.getVendor());
+        Color color = colorRepository.findById(color_id).get();
+        newCar.setColor(color);
         carService.save(newCar);
         return "redirect:/cars";
     }

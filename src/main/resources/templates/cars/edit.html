@@ -13,7 +13,7 @@
 <div layout:fragment="content">
     <h1>Редагувати машину!</h1>
     <form action="home" th:action="@{/cars/edit/{id}(id=${car.id})}" method="post">
-        <input type="text" name="name" th:value="${car.model}">
+        <input type="text" name="model" th:value="${car.model}">
         <input type="text" name="vendor" th:value="${car.vendor}">
         <div class="row">
             <div class="form-group col-xs-offset-8 col-xs-4">
@@ -22,6 +22,13 @@
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <a th:href="@{/cars}" class="btn btn-success btn-block btn-flat">Скасувати</a>
             </div>
+            <select name="color_id" id="color">
+<!--                <option th:utext="${car.getColor().getName()}"/>-->
+                <option th:each="color : ${colors}"
+                        th:value="${color.getId()}"
+                        th:utext="${color.getName()}"
+                        th:selected="${car.getColor().getId()==color.getId()}"/>
+            </select>
         </div>
     </form>
 </div>
