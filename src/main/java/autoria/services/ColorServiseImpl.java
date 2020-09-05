@@ -14,7 +14,6 @@ public class ColorServiseImpl {
     @Autowired
     public ColorRepository colorRepository;
 
-
     public Color findByName(String name) {
         return colorRepository.findByName(name);
     }

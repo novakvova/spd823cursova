@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+<head>
+    <title>Автомобілі</title>
+    <link rel="stylesheet" th:href="@{/static/assets/css/index.min.css}"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <h1>Автомобілі</h1>
+    <table class="table">
+        <tr th:each="item : ${cars}">
+            <td th:text="${item.vendor}"></td>
+            <td th:text="${item.model}"></td>
+            <td th:text="${item.color.getId()}"></td>
+            <td> <a th:href="@{/car/delete/{id}(id=${item.id})}">Delete</a></td>
+            <td> <label> | </label></td>
+            <td> <a th:href="@{/car/edit/{id}(id=${item.id})}">Edit</a></td>
+        </tr>
+    </table>
+    <p>
+        <a th:href="@{/cars/create}" class="btn btn-success">Додати</a>
+    </p>
+</div>
+</body>
+</html>

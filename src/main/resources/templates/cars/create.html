@@ -5,35 +5,35 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorator="layout">
 <head>
-    <title>Додати фото</title>
+    <title>Додати автомобіль</title>
     <link rel="stylesheet"
           th:href="@{/static/assets/css/index.min.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Додати у галерею!</h1>
-    <form action="home" th:action="@{/gallery/create}" method="post">
-
+    <h1>Додати автомобіль!</h1>
+    <form action="home" th:action="@{/cars/create}" method="post">
         <div class="form-group">
-            <label for="image">Фото</label>
-            <input type="text" class="form-control" id="image" name="image">
+            <label for="vendor">Виробник</label>
+            <input type="text" class="form-control" id="vendor" name="vendor">
+        </div>
+        <div class="form-group">
+            <label for="model">Модель</label>
+            <input type="text" class="form-control" id="model" name="model">
         </div>
 
         <div class="form-group">
-            <label for="content">Контент</label>
-            <input type="text" class="form-control" id="content" name="content">
+            <label for="color">Колір</label>
+            <select type="text" class="form-control" id="color" name="color">
+                <forEach items="@{colors}" var="color">
+                    <option value="@{color.name}"></option>
+                </forEach>
+            </select>
         </div>
 
-        <div class="form-group">
-            <label for="description">Коментар</label>
-            <input type="text" class="form-control" id="description" name="description">
-        </div>
-
-        <div class="row">
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Зберегти</button>
             </div>
-        </div>
     </form>
 </div>
 </body>

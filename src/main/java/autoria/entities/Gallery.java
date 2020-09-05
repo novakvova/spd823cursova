@@ -15,6 +15,9 @@ public class Gallery
     @Column(nullable = false, length = 4000)
     private String content;
 
+    @Column(nullable=false)
+    private String description;
+
     public Integer getId() {
         return id;
     }
@@ -37,5 +40,13 @@ public class Gallery
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

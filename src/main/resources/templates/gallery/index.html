@@ -5,7 +5,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorator="layout">
 <head>
-    <title>Кольори</title>
+    <title>Галерея</title>
     <link rel="stylesheet" th:href="@{/static/assets/css/index.min.css}"/>
     <div layout:fragment="styles">
         <link th:href="@{'/assets/gLightbox/glightbox.css'}" rel="stylesheet"/>
@@ -25,7 +25,10 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" th:each="item : ${list}">
                 <a th:href="${item.getContent()}" class="glightbox-demo">
+                    <label th:text="${item.description}"></label>
                     <img  class="img-thumbnail" th:src="${item.getImage()}" alt="image">
+                    <a class="btn btn-danger" th:href="@{/gallery/delete/{id}(id=${item.id})}">Видалити</a>
+                    <a class="btn btn-info" th:href="@{/gallery/edit/{id}(id=${item.id})}">Редагувати</a>
                 </a>
             </div>
         </div>
