@@ -11,8 +11,13 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Редагувати автомобіль!</h1>
-    <form action="home" th:action="@{/cars/edit/{id}(id=${car.id})}" method="post">
+    <h1>Редагувати автомобіль
+        <label name="name" th:text="${car.getVendor()}"></label>
+        <label name="name" th:text="${car.getModel()}"></label>
+        <label name="name" th:text="${car.color.getName()}"></label>
+        ?</h1>
+    <div class="container">
+    <form action="home" th:action="@{/cars/edit/{id}(id=${car.id})}" method="post" enctype="multipart/form-data">
         <input type="text" id="vendor" name="vendor" th:value="${car.vendor}">
         <input type="text" id="model" name="model" th:value="${car.model}">
         <select name="color_id" id="color_id">
@@ -21,15 +26,50 @@
                     th:utext="${color.getName()}"
             th:selected="${car.getColor().getId()==color.getId()}"/>
         </select>
-        <div class="row">
+        <div class="container">
+            <div class="row">
+                        <img  class="img-thumbnail" th:src="@{../uploads/{image_1}(image_1=${car.getImage_1()})}" alt="image">
+                        <img  class="img-thumbnail" th:src="@{../uploads/{image_2}(image_2=${car.getImage_2()})}" alt="image">
+                        <img  class="img-thumbnail" th:src="@{../uploads/{image_3}(image_3=${car.getImage_3()})}" alt="image">
+                        <img  class="img-thumbnail" th:src="@{../uploads/{image_4}(image_4=${car.getImage_4()})}" alt="image">
+                        <img  class="img-thumbnail" th:src="@{../uploads/{image_5}(image_5=${car.getImage_5()})}" alt="image">
+            </div>
+        <div name="files" id="files">
+            <div class="uploader">
+                <div class="wrapper">
+                    <div class="images">
+                        <div class="pic" id="pic">
+                            <input class="btn btn-outline-info btn-block btn-flat" value="Додати файли">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="filesContainer">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Файл</th>
+                        <th>Ім'я</th>
+                        <th>Розмір</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbodyFileList">
+                    </tbody>
+                </table>
+            </div>
+        </div>
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Зберегти</button>
             </div>
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <a th:href="@{/cars}" class="btn btn-success btn-block btn-flat">Скасувати</a>
             </div>
-        </div>
+
     </form>
+</div>
+<script th:src="@{'/assets/js/jquery-2.1.4.min.js'}"></script>
+<script  th:src="@{'/assets/js/uploader.js'}" ></script>
 </div>
 </body>
 </html>

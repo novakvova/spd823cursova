@@ -12,6 +12,9 @@
 <body>
 <div layout:fragment="content">
     <h1>Наші кольори!</h1>
+    <p>
+        <a th:href="@{/colors/create}" class="btn btn-success">Додати</a>
+    </p>
     <table class="table">
         <tr th:each="color : ${colors}">
             <td th:text="${color.name}"></td>
@@ -20,9 +23,6 @@
             <td> <a th:href="@{/colors/edit/{id}(id=${color.id})}">Edit</a></td>
         </tr>
     </table>
-    <p>
-        <a th:href="@{/colors/create}" class="btn btn-success">Додати</a>
-    </p>
 </div>
 </body>
 </html>

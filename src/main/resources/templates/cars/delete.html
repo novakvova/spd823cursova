@@ -11,19 +11,18 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Видалити автомобіль?</h1>
     <form action="home" th:action="@{/cars/delete/{id}(id=${car.id})}" method="post">
+        <h1>Видалити автомобіль
         <label name="name" th:text="${car.getVendor()}"></label>
         <label name="name" th:text="${car.getModel()}"></label>
         <label name="name" th:text="${car.color.getName()}"></label>
-         <div class="row">
+            ?</h1>
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Видалити</button>
             </div>
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <a th:href="@{/cars}" class="btn btn-success btn-block btn-flat">Скасувати</a>
             </div>
-        </div>
     </form>
 </div>
 </body>
