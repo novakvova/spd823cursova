@@ -12,8 +12,14 @@
 <body>
 <div layout:fragment="content">
     <h1>Автомобілі</h1>
+    <p>
+        <a th:href="@{/cars/create}" class="btn btn-success">Додати</a>
+    </p>
     <table class="table">
         <tr th:each="item : ${cars}">
+            <td>
+                <img  class="img-thumbnail" th:src="@{/cars/uploads/{image_1}(image_1=${item.getImage_1()})}" alt="image">
+            </td>
             <td th:text="${item.vendor}"></td>
             <td th:text="${item.model}"></td>
             <td th:text="${item.color.getName()}"></td>
@@ -22,9 +28,6 @@
             <td> <a th:href="@{/cars/edit/{id}(id=${item.id})}">Edit</a></td>
         </tr>
     </table>
-    <p>
-        <a th:href="@{/cars/create}" class="btn btn-success">Додати</a>
-    </p>
 </div>
 </body>
 </html>
