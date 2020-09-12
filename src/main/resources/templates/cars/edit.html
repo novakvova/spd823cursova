@@ -28,13 +28,13 @@
         </select>
         <div class="container">
             <div class="row">
-                        <img  class="img-thumbnail" th:src="@{../uploads/{image_1}(image_1=${car.getImage_1()})}" alt="image">
-                        <img  class="img-thumbnail" th:src="@{../uploads/{image_2}(image_2=${car.getImage_2()})}" alt="image">
-                        <img  class="img-thumbnail" th:src="@{../uploads/{image_3}(image_3=${car.getImage_3()})}" alt="image">
-                        <img  class="img-thumbnail" th:src="@{../uploads/{image_4}(image_4=${car.getImage_4()})}" alt="image">
-                        <img  class="img-thumbnail" th:src="@{../uploads/{image_5}(image_5=${car.getImage_5()})}" alt="image">
+                        <img width="50%" class="img-thumbnail" th:src="@{'/get-image/'+${car.getImage_1()}}" alt="image">
+                        <img width="50%" class="img-thumbnail" th:src="@{'/get-image/'+${car.getImage_2()}}" alt="image">
+                        <img width="50%" class="img-thumbnail" th:src="@{'/get-image/'+${car.getImage_3()}}" alt="image">
+                        <img width="50%" class="img-thumbnail" th:src="@{'/get-image/'+${car.getImage_4()}}" alt="image">
+                        <img width="50%" class="img-thumbnail" th:src="@{'/get-image/'+${car.getImage_5()}}" alt="image">
             </div>
-        <div name="files" id="files">
+        <div name="files[]" id="files[]">
             <div class="uploader">
                 <div class="wrapper">
                     <div class="images">
@@ -65,7 +65,7 @@
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <a th:href="@{/cars}" class="btn btn-success btn-block btn-flat">Скасувати</a>
             </div>
-
+        </div>
     </form>
 </div>
 <script th:src="@{'/assets/js/jquery-2.1.4.min.js'}"></script>

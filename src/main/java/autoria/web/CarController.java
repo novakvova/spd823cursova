@@ -53,9 +53,66 @@ public class CarController {
     }
 
     @PostMapping("/create")
-    public String create(Car car, int color_id){
+    public String create(Car car, int color_id, @RequestParam("images[]") MultipartFile[] files){
         Color color=colorRepository.findById(color_id).get();
         car.setColor(color);
+//        MultipartFile file = files[0];
+//        if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
+//            try {
+//                String name = UUID.randomUUID().toString() + "." +
+//                        FilenameUtils.getExtension(file.getOriginalFilename());
+//
+//                byte[] bytes = file.getBytes();
+//
+//                Path f = storageService.load("");
+//                String rootPath = f.toUri().getPath();
+//                System.out.println("---------" + rootPath);
+//                File dir = new File(rootPath + File.separator);
+//                // Create the file on server
+//                File serverFile = new File(dir.getAbsolutePath()
+//                        + File.separator + name);
+//                BufferedOutputStream stream = new BufferedOutputStream(
+//                        new FileOutputStream(serverFile));
+//                stream.write(bytes);
+//                stream.close();
+//                car.setImage_1(name);
+//            } catch (Exception e) {
+//                return "You failed to upload  => " + e.getMessage();
+//            }
+//        }
+        for (int i = 0; i < files.length; i++) {
+            MultipartFile file = files[i];
+            String name = UUID.randomUUID().toString()+"."+ FilenameUtils.getExtension(file.getOriginalFilename());
+            try {
+                byte[] bytes = file.getBytes();
+                Path f = storageService.load("");
+                String rootPath = f.toUri().getPath();
+                System.out.println("---------" + rootPath);
+                File dir = new File(rootPath + File.separator);
+                if (!dir.exists())
+                    dir.mkdirs();
+                if(i==0)
+                    car.setImage_1(name);
+                if(i==1)
+                    car.setImage_2(name);
+                if(i==2)
+                    car.setImage_3(name);
+                if(i==3)
+                    car.setImage_4(name);
+                if(i==4)
+                   car.setImage_5(name);
+                File serverFile = new File(dir.getAbsolutePath()
+                        + File.separator + name);
+                BufferedOutputStream stream = new BufferedOutputStream(
+                        new FileOutputStream(serverFile));
+                stream.write(bytes);
+                stream.close();
+            } catch (Exception e) {
+                return "You failed to upload " + name + " => " + e.getMessage();
+            }
+        }
+
+
         carRepository.save(car);
         return "redirect:/cars";
     }
@@ -97,28 +154,42 @@ public class CarController {
         update.setVendor(car.getVendor());
         Color color=colorRepository.findById(color_id).get();
         update.setColor(color);
-        MultipartFile file = files[0];
-        if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
-            try {
-                String name = UUID.randomUUID().toString() + "." +
-                        FilenameUtils.getExtension(file.getOriginalFilename());
+        for (int i = 0; i < files.length; i++) {
+            MultipartFile file = files[0];
+            if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
+                try {
+                    String name = UUID.randomUUID().toString() + "." +
+                            FilenameUtils.getExtension(file.getOriginalFilename());
 
-                byte[] bytes = file.getBytes();
+                    byte[] bytes = file.getBytes();
 
-                Path f = storageService.load("");
-                String rootPath = f.toUri().getPath();
-                System.out.println("---------" + rootPath);
-                File dir = new File(rootPath + File.separator);
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + name);
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-                update.setImage_1(name);
-            } catch (Exception e) {
-                return "You failed to upload  => " + e.getMessage();
+                    Path f = storageService.load("");
+                    String rootPath = f.toUri().getPath();
+                    System.out.println("---------" + rootPath);
+                    File dir = new File(rootPath + File.separator);
+                    if (!dir.exists())
+                        dir.mkdirs();
+                    if (i == 0)
+                        update.setImage_1(name);
+                    if (i == 1)
+                        update.setImage_2(name);
+                    if (i == 2)
+                        update.setImage_3(name);
+                    if (i == 3)
+                        update.setImage_4(name);
+                    if (i == 4)
+                        update.setImage_5(name);
+                    // Create the file on server
+                    File serverFile = new File(dir.getAbsolutePath()
+                            + File.separator + name);
+                    BufferedOutputStream stream = new BufferedOutputStream(
+                            new FileOutputStream(serverFile));
+                    stream.write(bytes);
+                    stream.close();
+                    update.setImage_1(name);
+                } catch (Exception e) {
+                    return "You failed to upload  => " + e.getMessage();
+                }
             }
         }
 //        for (int i = 0; i < files.length; i++) {

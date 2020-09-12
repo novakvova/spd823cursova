@@ -12,7 +12,7 @@
 <body>
 <div layout:fragment="content">
     <h1>Додати автомобіль!</h1>
-    <form action="home" th:action="@{/cars/create}" method="post">
+    <form action="home" th:action="@{/cars/create}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="vendor">Виробник</label>
             <input type="text" class="form-control" id="vendor" name="vendor">
@@ -30,11 +30,16 @@
                         th:utext="${color.getName()}"/>
             </select>
         </div>
+        <input type="file" name="images[]" multiple>
 
             <div class="form-group col-xs-offset-8 col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Зберегти</button>
             </div>
+
     </form>
+</div>
+<script th:src="@{'/assets/js/jquery-2.1.4.min.js'}"></script>
+<script  th:src="@{'/assets/js/uploader.js'}" ></script>
 </div>
 </body>
 </html>

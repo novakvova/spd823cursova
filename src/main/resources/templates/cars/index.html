@@ -18,7 +18,7 @@
     <table class="table">
         <tr th:each="item : ${cars}">
             <td>
-                <img  class="img-thumbnail" th:src="@{'/get-image/'+${item.getImage_1()}}" alt="image">
+                <img width="20%" class="img-thumbnail" th:src="@{'/get-image/'+${item.getImage_1()}}" alt="image">
             </td>
             <td th:text="${item.vendor}"></td>
             <td th:text="${item.model}"></td>
