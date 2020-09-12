@@ -17,6 +17,7 @@ import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -51,13 +52,13 @@ public class DocumentController
         for (int i = 0; i < files.length; i++) {
             MultipartFile file = files[i];
 
-            String name = UUID.randomUUID().toString()+"." +FilenameUtils.getExtension(file.getOriginalFilename());;
+            String name = UUID.randomUUID().toString()+"."+FilenameUtils.getExtension(file.getOriginalFilename());
             try {
                 byte[] bytes = file.getBytes();
 
                 // Creating the directory to store file
-                String rootPath =  context.getRealPath("resources/");
-                System.out.println("---------"+rootPath);
+                String rootPath =  "src/main/resources/";
+                System.out.println(rootPath);
                 File dir = new File(rootPath + File.separator + "uploads");
                 if (!dir.exists())
                     dir.mkdirs();
