@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/register").permitAll()
 				.antMatchers("/document").permitAll()
 				.antMatchers("/colors/**").permitAll()
+				.antMatchers("/get-image/**").permitAll()
 				.antMatchers("/gallery/**").permitAll()
 				.antMatchers("/cars/**").permitAll()
 				.antMatchers("/cars/uploads/**").permitAll()
